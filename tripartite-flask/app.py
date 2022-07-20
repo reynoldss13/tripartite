@@ -29,8 +29,8 @@ UPLOAD_EXTENSIONS = {
       'jpeg', 'xlsm', 'xlsx'
       }
 
-# UPLOAD_Path currently set to example local storage, must be updated to reflect cloud storage in production 
-UPLOAD_PATH = r'C:/Users/steph/Documents/Ulster University/Year 4/Project/semester_1/tripartite-flask/storage/tenant_'
+# UPLOAD_Path wasset to local storage, must be updated to reflect cloud storage in production 
+UPLOAD_PATH = r' '
 
 ## AUTHENTICATION ##
 # login

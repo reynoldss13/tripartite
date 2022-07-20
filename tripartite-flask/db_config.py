@@ -2,7 +2,8 @@ from pymongo import MongoClient
 import os
 
 # MongoDB - establishing client and document connections
-mongo_client = MongoClient("mongodb://127.0.0.1:27017")
+# Was set to private mongoDB
+mongo_client = MongoClient(" ")
 db = mongo_client.projectDB
 student = db.student
 teacher = db.teacher

@@ -8,7 +8,7 @@ import faker
 import datetime
 
 # MongoDB client and collections
-mongo_client = MongoClient("mongodb://127.0.0.1:27017")
+mongo_client = MongoClient(" ")
 db = mongo_client.projectDB
 student = db.student
 teacher = db.teacher

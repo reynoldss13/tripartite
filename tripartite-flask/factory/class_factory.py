@@ -5,7 +5,7 @@ import random
 from pymongo import MongoClient
 
 # MongoDB client and documents
-mongo_client = MongoClient("mongodb://127.0.0.1:27017")
+mongo_client = MongoClient(" ")
 db = mongo_client.projectDB
 classes = db.classes
 subject = db.subject
