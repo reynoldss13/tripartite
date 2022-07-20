@@ -1,0 +1,40 @@
+<!-- Dashboard container -->
+<div *ngFor = "let student of student_data_arr" class="dashboard-body">
+    <!-- heading with student name and button to view content -->
+    <div class="heading-bar">
+        <div><b>Student name:</b>&nbsp;&nbsp;&nbsp;{{student.name}}</div>
+        <div><button class="dboard-btn" (click)="toggleView(StudentContent)">V</button></div>
+    </div>
+    <div #StudentContent class="classes-body hidden">
+        <!-- Display of each class for the student -->
+        <div *ngFor = "let class of student.classes | ObjTForm" >
+            <div class="sub-header">
+                <div> <b>Subject:</b> &nbsp;&nbsp;&nbsp; {{class.class.subject}}</div> 
+                <div> <b>Teacher:</b> &nbsp;&nbsp;&nbsp;{{class.class.teacher_name}}</div>
+                <div><button class="dboard-btn" (click)="toggleView(ResultsDiv)">V</button></div>  
+            </div>
+            <div #ResultsDiv class="hidden">
+                <!-- Display of all assignment results returned -->
+                <div *ngFor = "let result of class.results | ObjTForm" class="class-results">
+                    <div class="result-record">
+                        <div><b>Title: </b>&nbsp;&nbsp;{{result.title}}</div>
+                        <div><b>Date submitted: </b>&nbsp;&nbsp;{{result.submission_date}}</div>
+                        <div><b>Result: </b>&nbsp;&nbsp;{{result.mark }}</div>
+                    </div>
+                    <div class="feedback-record">
+                        <div class="feedback-element">
+                            <div><b>Feedback to student:</b></div>
+                            <div class="info">The feedback provided to {{student.name}}</div>
+                            <div>{{result.feedback}}</div>
+                        </div>
+                        <div class="feedback-element">
+                            <div> <b>Comment for parent:</b></div>
+                            <div class="info">Additional comment from the teacher. Contact us if you require further discussion</div>
+                            <div>{{result.feedback_private}}</div>
+                        </div>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

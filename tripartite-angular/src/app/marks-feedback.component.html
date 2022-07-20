@@ -1,0 +1,122 @@
+<div class="">
+    <!-- Header -->
+    <div class="header">
+        <div class="header-title">Marks and feedback for {{current_assignment_title}}</div>
+        <div><button class="btn-cancel" (click)="return()">Go back</button></div>
+    </div>
+
+    <!-- Body -->
+    <!-- Submission list -->
+    <div class="body-container">
+        <div class="marks-body">
+            <div class="marks-body-header">
+                <div class="marks-body-title">Students who submitted work</div> 
+                <div class="info">All students who submitted work for the assignment. Here you can add/edit 
+                    marks, feedback for students and additonal comments for parents 
+                </div>
+            </div>
+            <div  *ngFor="let submission of assignment_submissions | ObjSortPipe: 'surname'">
+                
+                <div class="submission-header">
+                    <div>
+                        <b>Student:</b>
+                    </div>
+                    <div>
+                        {{submission.surname}}, {{submission.firstname}}
+                    </div>    
+                </div>
+                <!-- Marks and feedback form -->
+                <div class="submission-instance" >
+                    
+                    <div class="grade-and-submit"> 
+                        <div>
+                            <div><b>Mark:</b></div>
+                            <input #mark id="mark" name="mark" type="text" [value]="submission.mark">
+                        </div>
+                        <div *ngIf="submission.marked">
+                            <button type="button" class="btn-save" 
+                                (click)="addFeedback(submission._id, mark.value, feedback.value, parentFeedback.value)">
+                                Update
+                            </button>
+                        </div>
+
+                        <div *ngIf="!submission.marked">
+                            <button type="button" class="btn-save" 
+                            (click)="addFeedback(submission._id, mark.value, feedback.value, parentFeedback.value)">
+                                Save
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="feedback-container">
+                        <div>  
+                            <div><b>Feedback for student:</b></div>
+                            <textarea #feedback name="feedback" id="feedback" 
+                            cols="20" rows="5" [value]="submission.feedback">
+                            </textarea>
+                        </div>
+
+                        <div>
+                            <div><b>Comment for parent:</b></div>
+                            <textarea #parentFeedback name="parentFeedback" id="parentFeedback"
+                                cols="20" rows="5" [value]="submission.feedback_private">
+                            </textarea>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- No submission list -->
+        <div class="marks-body">
+            <div class="marks-body-header">
+                <div class="marks-body-title">Students who did not submit work</div> 
+                <div class="info">A list of students who did not submit work before the deadline.
+                    Here you can still add feedback and/or commentary for their parent/s.
+                </div>
+            </div>
+            <div  *ngFor="let student of students_no_submission | ObjSortPipe: 'surname'">
+                
+                <div class="submission-header">
+                    <div>
+                        <b>Student:</b>
+                    </div>
+                    <div>
+                        {{student.name}}
+                    </div>    
+                </div>
+                <!-- Marks and feedback form -->
+                <div class="no-submission-instance" >
+
+                    <div class="feedback-container">
+                        <div>  
+                            <div><b>Feedback for student:</b></div>
+                            <textarea #feedback name="feedback" id="feedback" 
+                            cols="20" rows="5" >
+                            </textarea>
+                        </div>
+
+                        <div>
+                            <div><b>Comment for parent:</b></div>
+                            <textarea #parentFeedback name="parentFeedback" id="parentFeedback"
+                                cols="20" rows="5" >
+                            </textarea>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="comment-and-submit"> 
+                        
+                     <div>
+                         <button type="button" class="btn-save">
+                            Save
+                         </button> 
+                     </div>
+
+                 </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

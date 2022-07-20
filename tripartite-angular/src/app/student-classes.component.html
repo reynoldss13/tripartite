@@ -1,0 +1,16 @@
+<!-- Header -->
+<div class="classes-header">
+    <div>
+        <h1>{{student_name}}'s Classes</h1>
+    </div>
+</div>
+
+<!-- Body -->
+<div class="classes-body">
+    <div *ngFor="let class of student_classes" class="class-instance">
+        <div class="data-row"><b>Subject:</b>{{class.subject}}</div>
+        <div class="data-row"><b>Day:</b>{{class.day}}</div>
+        <div class="data-row"><b>Period:</b>{{class.period}}</div>
+        <div class="teacher-row"><b>Teacher:</b>{{class.teacher_name}}</div>
+    </div>
+</div>

@@ -1,0 +1,31 @@
+<h1>Assignments</h1>
+<div *ngFor = "let class of assignments_arr | ObjTForm" class="assignment-instance">
+    <div class="class-info">
+        <div><b>Class:</b>&nbsp;&nbsp;&nbsp;{{class.class.subject}}</div>
+        <div><b>Teacher:</b>&nbsp;&nbsp;&nbsp;{{class.class.teacher_name}}</div>
+    </div>
+    <div *ngFor = "let assignment of class.assignments | ObjTForm">
+        <div class="assignment-details">
+            <div>
+                <div class="assignment-element"><b>Title:</b>&nbsp;&nbsp;&nbsp;{{assignment.title}}</div>
+                <div><b>Deadline:</b>&nbsp;&nbsp;&nbsp;{{assignment.deadline}}</div>
+            </div>
+            <div>
+                <div class="assignment-element"><b>Download link:</b></div>
+                <a role="button" class="dl-link" (click)="downloadAssignment(assignment._id);">{{assignment.filename}}</a>
+            </div>
+        </div>
+        <div class="submit-form">
+            <button (click)="toggleSubmit(form);" class="submit-toggle-btn">Upload submission</button>
+            <form #form [formGroup]="submissionForm" (ngSubmit)="sendSubmission(form, assignment._id);" class="hidden">
+                <div class="submit-header"><b>Upload your file:</b></div>
+                <div class="form-inputs">
+                    <input id={{assignment._id}} type="file" (change)="fileSelect($event)">
+                    <div *ngIf="selected == true">
+                        <button type="submit">Submit</button>
+                    </div> 
+                </div>           
+            </form>
+        </div>
+    </div>
+</div>

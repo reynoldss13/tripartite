@@ -1,0 +1,39 @@
+.student-instance {
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    margin: 20px;
+    justify-content: center;
+    border: 1px solid #000000;
+    background-color: #e5e5e5;
+}
+
+.class-details {
+    display: flex;
+    flex-direction: row;
+    width:90%;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: x-large;
+
+}
+
+.resultRecord-results {
+    display: flex;
+    flex-direction: row;
+    width:70%;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.resultRecord-body {
+    margin-bottom: 20px;
+    border: 1px solid #949494;
+    font-size: medium!important;
+    background-color: #fff;
+    padding: 8px;
+}
+
+.resultRecord-feedback {
+    margin-top: 4px;
+}

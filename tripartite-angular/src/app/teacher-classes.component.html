@@ -1,0 +1,22 @@
+<div class="classes-body">
+    <div class="classes-header">
+        <div> <b>My Classes</b> </div>
+        <div><button class="dboard-btn" (click)="addNewClass();">Add new class</button></div> 
+    </div>
+
+    <div *ngFor="let class of class_data_arr" class="class-instance">
+        <div class="class-instance-header">
+            <div class="class-instance-header-element"><b>Subject</b>&nbsp;&nbsp;{{class.subject}}</div>
+            <div class="class-instance-header-element"><b>Day:</b>&nbsp;&nbsp;{{class.day}}</div>
+            <div class="class-instance-header-element"><b>period</b>&nbsp;&nbsp;{{class.period}}</div>
+            <div><button (click)="editClass(class._id)" >Edit class</button></div>
+            <div><button class="dboard-btn" (click)="toggleView(ClassStudents)">V</button></div>
+        </div>
+        <div #ClassStudents class="student-list hidden">
+            <div *ngFor="let student of class.students" class="student-list-item">
+                <div class="student-list-item-name"><b>Name:</b>&nbsp;&nbsp;{{student.name}}</div>
+                <div class="student-list-item-yeargroup"><b>Year group:</b>&nbsp;&nbsp;{{student.year_group}}</div>
+            </div>
+        </div>
+    </div>
+</div>

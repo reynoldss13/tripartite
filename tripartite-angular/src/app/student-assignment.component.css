@@ -1,0 +1,73 @@
+.assignment-instance {
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    margin: 20px;
+}
+
+.class-info {
+    display: flex;
+    flex-direction: row;
+    width:60%;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    padding-bottom: 4px;
+    font-size: large;
+    border: 1px solid #949494;
+    padding: 6px;
+    background-color: #eeeeee;
+}
+
+.assignment-details {
+    display: flex;
+    margin-bottom: 3px;
+    padding-bottom: 2px;
+    width: 60%;
+    justify-content: space-between;
+}
+
+.submit-form {
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 14px;
+    padding-bottom: 14px;
+}
+
+.submit-header {
+    padding-bottom: 4px;
+    margin-bottom: 4px;
+}
+
+h1 {
+    padding-left:20px;
+    margin-left: 20px;
+}
+
+.submit-toggle-btn {
+    margin-bottom: 8px;
+    width: fit-content;
+    justify-content: flex-start;
+}
+
+.form-inputs {
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.assignment-element {
+    margin-bottom: 6px;
+}
+
+.dl-link {
+    width:200px;
+    max-width: 200px;
+    display: block;
+    cursor:pointer;
+    color:#0000FF;
+    text-decoration:underline;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}

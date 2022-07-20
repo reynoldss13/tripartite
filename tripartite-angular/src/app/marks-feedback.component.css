@@ -1,0 +1,124 @@
+.header-title {
+    font-size: 2.3em;
+    font-weight: bold;
+
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    padding:20px;
+    margin: 10px;
+    width:95%;
+    justify-content: space-between;
+    border: 3px solid #949494;
+    background-color: #EEEEEE;
+}
+
+.btn-cancel {
+    width:90px;
+    height:50px;
+    font-weight: 700;
+    border: 2px solid;
+    font-size: medium;
+}
+.btn-cancel:hover {
+    filter: brightness(110%);
+}
+
+.marks-body {
+    padding:10px;
+    margin: 10px;
+    width:60%;
+    border: 3px solid #949494;
+    max-height: 450px;
+    height: 450px;
+    overflow-y: auto;
+}
+
+.submission-header {
+    display: flex;
+    font-size: x-large;
+    flex-direction: row;
+    margin-bottom: 6px;
+    justify-content: space-between;
+    width:70%;
+    margin-left: 50px;
+    background-color: #EEEEEE;
+}
+
+.submission-instance {
+    margin-left: 50px;
+    margin-bottom: 20px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.grade-and-submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    width:100%
+}
+
+.btn-save {
+    width:70px;
+    height:30px;
+    border: 2px solid #040273;
+    font-size: medium;
+    font-weight: 700;
+    background-color: #e3e2fe;
+    margin-top: 5px;
+}
+.btn-save:hover {
+    filter: brightness(110%);
+}
+
+.feedback-container {
+    display: flex;
+    flex-direction: row;
+    padding:2px;
+    justify-content: space-between;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: row;
+}
+.marks-body-header{
+    margin: 20px;
+    margin-left: 50px;
+    padding:2px;
+    display: flex;
+    flex-direction: column;
+    width:70%;
+    justify-content: center;
+}
+
+.marks-body-title {
+    font-size: x-large;
+    font-weight: 900;
+}
+
+.info  {
+    font-size:medium;
+    font-style: italic;
+}
+
+.no-submission-instance {
+    margin-left: 50px;
+    margin-bottom: 6px;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.comment-and-submit {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+    margin-bottom: 20px;
+    width: 78%;
+}

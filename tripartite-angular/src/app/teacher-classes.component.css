@@ -1,0 +1,67 @@
+.classes-body {
+    display: flex;
+    flex-direction: column;
+    padding:20px;
+    margin: 20px;
+    justify-content: center;
+    width: 90%;
+}
+
+.classes-header {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+    font-size: x-large;
+    border: 1px solid #949494;
+    padding:20px;
+    margin-left: 8px;
+    margin-bottom: 14px;
+    background-color: #FAFAFA;
+}
+
+.class-instance {
+    display: flex;
+    width:90%;
+    flex-direction: column;
+    padding: 20px;
+    margin:8px;
+    background-color: #FAFAFA;
+    border: 1px solid #949494;
+}
+
+.class-instance-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 8px;
+    font-size: larger;
+}
+
+.class-instance-header-element {
+    max-width: 23%;
+    min-width: 23%;
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+.student-list {
+    border: 1px solid #949494;
+    height: 120px;
+    overflow-y: auto;
+}
+
+.student-list-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 6px;
+}
+
+.student-list-item-name {
+    margin-left: 10%;
+}
+.student-list-item-yeargroup {
+    margin-right: 10%;
+}

@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="login-form">
+        <div class="form-element title-login">
+            <h1>Welcome to Tripartite</h1>
+        </div>
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+            <div class="form-element">
+                <div class="form-element">
+                    <label for="emailInput" class="form-label">Email:</label><br/>
+                    <input type="email" id="emailInput" class="form-input" formControlName="emailInput">
+                </div>
+                <div class="form-element">
+                    <label for="passwordInput" class="form-label">Password:</label><br/>
+                    <input type="password" id="passwordInput" class="form-input" formControlName="passwordInput">
+                </div>
+            </div>
+            <div #error id="error" class="hidden error-container ">
+                <span class="error-message">Please ensure your email & password are correct</span>
+            </div>
+            <div class="button-container">
+                <button type="submit" class="form-button" style="margin-top: 12px;" 
+                [disabled]="!loginForm.valid">Login</button>
+            </div>
+            
+        </form>
+    </div>
+</div>

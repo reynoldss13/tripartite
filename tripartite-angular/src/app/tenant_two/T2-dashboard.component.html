@@ -1,0 +1,100 @@
+<div id="dashboardContainer">
+
+    <!-- Header nav bar -->
+    <div class="nav-bar-top">
+        <div class="tenant-name">{{tenant.tenant_name}}</div>
+        <div class="nav-user">
+            <div class="nav-user-element">{{fullName}}</div>
+            <div class="nav-user-element"><ngx-avatar name="{{fullName}}"></ngx-avatar></div>
+            <div class="nav-user-element"><button (click)="logout()" class="logout-btn">Logout</button></div>
+        </div>
+    </div>
+
+ <!-- STUDENT -->
+ <div *ngIf="userType == 0" class="secondary-container">
+    <!-- left nav bar -->
+    <div class="nav-bar-right">
+        <div class="nav-bar-right-element">
+            <img src="https://static.wixstatic.com/media/024943_3ec8b170b16544168ac8162eb2015204~mv2.png/v1/fill/w_115,h_121,al_c,q_85,usm_0.66_1.00_0.01/crest.webp"
+            alt="Tenant 1 Logo" width="150" height="200">
+        </div>
+        <div class="nav-bar-right-element"><button 
+            (click)="studentViewToggle(sTimeTable, sResults, sClasses, sAssignments);" class="nav-bar-right-button">Timetable</button></div>
+        <div class="nav-bar-right-element"><button 
+            (click)="studentViewToggle(sClasses, sResults, sTimeTable, sAssignments);" class="nav-bar-right-button">Classes</button></div>
+        <div class="nav-bar-right-element"><button  
+            (click)="studentViewToggle(sAssignments, sTimeTable, sClasses, sResults);" class="nav-bar-right-button">Assignments</button></div>
+        <div class="nav-bar-right-element"><button 
+            (click)="studentViewToggle(sResults, sTimeTable, sClasses, sAssignments);" class="nav-bar-right-button">Results</button></div>
+        <br/><br/>
+    </div>
+
+    <!-- central container -->
+    <div class="content-container">
+        <div #sTimeTable class="hidden">Timetable</div>
+        <div #sClasses class=""><student-classes></student-classes></div>
+        <div #sAssignments class="hidden"><student-assignment></student-assignment></div>
+        <div #sResults class="hidden"><student-results></student-results></div>
+    </div>
+
+    <!-- right nav bar -->
+    <div class="nav-bar-left">
+        <div class="nav-bar-right-element">Upcoming assignments:</div>
+    </div>
+</div>
+
+<!-- PARENT -->
+<div *ngIf="userType == 2" class="secondary-container">
+
+    <!-- left nav bar -->
+    <div class="nav-bar-right">
+        <div class="nav-bar-right-element">
+            <img src="https://static.wixstatic.com/media/024943_3ec8b170b16544168ac8162eb2015204~mv2.png/v1/fill/w_115,h_121,al_c,q_85,usm_0.66_1.00_0.01/crest.webp"
+            alt="Tenant 1 Logo" width="150" height="200">
+        </div>
+        <div class="nav-bar-right-element"><button class="nav-bar-right-button">Contact Us</button></div>
+        <br/><br/>
+    </div>
+
+    <!-- central container -->
+    <div class="content-container">
+        <parent-dashboard></parent-dashboard>
+    </div>
+
+    <!-- right nav bar -->
+    <div class="nav-bar-left">
+        <div class="nav-bar-right-element">Recent teacher comments:</div>
+    </div>
+</div>
+
+<!-- TEACHER -->
+<div *ngIf="userType == 1" class="secondary-container">
+
+    <!-- left nav bar -->
+    <div class="nav-bar-right">
+        <div class="nav-bar-right-element">
+            <img src="https://static.wixstatic.com/media/024943_3ec8b170b16544168ac8162eb2015204~mv2.png/v1/fill/w_115,h_121,al_c,q_85,usm_0.66_1.00_0.01/crest.webp"
+            alt="Tenant 1 Logo" width="150" height="200">
+        </div>
+        <div class="nav-bar-right-element"><button
+            (click)="teacherViewToggle(tTimetable, tClasses, tAssignments);" class="nav-bar-right-button">Timetable</button></div>
+        <div class="nav-bar-right-element"><button
+            (click)="teacherViewToggle(tClasses, tTimetable, tAssignments);" class="nav-bar-right-button">My Classes</button></div>
+        <div class="nav-bar-right-element"><button
+            (click)="teacherViewToggle(tAssignments, tClasses, tTimetable);" class="nav-bar-right-button">Assignments</button></div>
+        <br/><br/>
+    </div>
+
+    <!-- central container -->
+    <div class="content-container">
+        <div #tTimetable class="hidden">Timetable</div>
+        <div #tClasses class=""><teacher-classes></teacher-classes></div>
+        <div #tAssignments class="hidden"><teacher-assignment></teacher-assignment></div>
+    </div>
+
+    <!-- right nav bar -->
+    <div class="nav-bar-left">
+        <div class="nav-bar-right-element">Upcoming events:</div>
+    </div>
+</div>
+</div>

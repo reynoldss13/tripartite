@@ -1,0 +1,23 @@
+<!-- Dashboard container -->
+<div *ngFor = "let class of student_data_arr | ObjTForm" class="student-instance">
+    <div class="class-details">
+        <div><b>Class:</b>&nbsp;&nbsp; {{class.class.subject}}</div>
+        <div><b>Day:</b>&nbsp;&nbsp; {{class.class.day}}</div>
+        <div><b>Period:</b>&nbsp;&nbsp; {{class.class.period}}</div>
+        <div><b>Teacher:</b>&nbsp;&nbsp; {{class.class.teacher_name}}</div>
+    </div>
+    <!-- Display of all assignment results returned -->
+    <div *ngFor = "let result of class.results | ObjTForm" class="resultRecord-body">
+        <div class="resultRecord-results">
+            <div class="resultRecord-element"> <b>Title: </b>&nbsp;&nbsp;{{result.title}}</div>
+            <div class="resultRecord-element"><b> Submitted: </b>&nbsp;&nbsp;{{result.submission_date}}</div>
+            <div class="resultRecord-element"><b>Result: </b>&nbsp;&nbsp;{{result.mark }}</div>
+        </div>
+        <div>
+            <div>
+                <div><b>Feedback:</b></div>
+                <div class="resultRecord-feedback">{{result.feedback}}</div>
+            </div>
+        </div>
+    </div>
+</div>

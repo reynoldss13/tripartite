@@ -1,0 +1,240 @@
+<div class="assignments-body">
+    <div class="assignment-header">
+        <div> <b>Assignments</b> </div> 
+    </div>
+
+    <div *ngFor ="let class of assignments_arr" class="assignments">
+        <div class="class-instance">
+            <div class="class-info-element">
+                <div><b>Subject:</b></div> 
+                <div>{{class.class.subject}}</div>
+            </div>
+            <div class="class-info-element">
+                <div><b>Day:</b></div> 
+                <div>{{class.class.day}}</div>
+            </div>
+            <div class="class-info-element">
+                <div><b>Period:</b></div> 
+                <div>{{class.class.period}}</div>
+            </div>
+            <div class="class-info-element">
+                <div><button type="button" 
+                    (click)="InitiateSave(addModal,class.class._id, class.class.subject, class.class.day, class.class.period)">
+                    Add assignment
+                </button>
+            </div>
+            </div>
+            <div class="class-info-element">
+                <div><button type="button" (click)="toggle(assignments)">V</button></div>
+            </div>
+        </div>
+        
+        <div #assignments class="hidden">
+            <div class="class-assignment-sub-header"> 
+                <div>Expired deadlines</div> 
+                <div class="header-info">Assignments where the deadline has passed. 
+                    Download submissions and add/update marks and feedback.</div>
+            </div>
+            <div *ngFor="let assignment of class.assignments | ObjSortPipe: 'deadline'" >
+                <div *ngIf="dateCompare(assignment.deadline);" class="assignment-instance">
+                    <div class="assignment-info-element">
+                        <div><b>Title:</b>&nbsp;&nbsp;&nbsp;{{assignment.title}}</div>
+                    </div>
+                    <div class="assignment-info-element">
+                        <div><b>Deadline:</b>&nbsp;&nbsp;&nbsp;{{assignment.deadline}}</div>
+                    </div>
+                    <div class="assignment-btn-element">
+                        <div>
+                            <button type="button" class="form-element-button" (click)="downloadSubmissions(assignment._id)">
+                                Download <br/> submissions
+                            </button>
+                        </div>
+                        <div><button type="button" class="form-element-button" (click)="marksFeedbackRedirect(assignment._id, class.class._id)">
+                            Marks <br/> & feedback
+                        </button>
+                    </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="class-assignment-sub-header"> 
+                <div>Upcoming deadlines</div> 
+                <div class="header-info">Assignments still in progress. 
+                    Download current submissions and edit or delete the assignment.</div>
+            </div>
+            <div *ngFor="let assignment of class.assignments | ObjSortPipe: 'deadline'" >
+                <div *ngIf="!dateCompare(assignment.deadline);" class="assignment-instance">
+                    <div class="assignment-info-element">
+                        <div><b>Title:</b>&nbsp;&nbsp;&nbsp;{{assignment.title}}</div>
+                    </div>
+                    <div class="assignment-info-element">
+                        <div><b>Deadline:</b>&nbsp;&nbsp;&nbsp;{{assignment.deadline}}</div>
+                    </div>
+                    <div class="assignment-btn-element">
+                        <div>
+                            <button type="button" class="form-element-button" (click)="downloadSubmissions(assignment._id)">
+                                Download <br/> submissions
+                            </button>
+                        </div>
+                        <div>
+                            <button type="button" class="form-element-button"
+                            (click)="InitiateEdit(EditModal, assignment._id, assignment.title, assignment.deadline, assignment.filename)" > 
+                                Edit/delete Assignment
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>   
+    </div>
+</div>
+
+<!-- Add assignment modal -->
+<div #addModal class="hidden">
+    <div class="modal-box">
+        <div class="modal-box-content">
+            <div class="modal-body">
+                <!-- Add assignment header -->
+                <div class="centered">
+                    <h3>Adding assignment to {{current_class_subject}}, {{current_class_day}}, Period {{current_class_period}}</h3>
+                </div>
+                <div #422Error id="add_422_error" class="error-container hidden">
+                    <span class="error-message">Unsupported file type detected, please choose a valid file</span>
+                </div>
+                <div #nameError id="add_name_error" class="error-container hidden">
+                    <span class="error-message">An assignment with this title already exists for this class.<br/>Please choose another</span>
+                </div>
+                <div class="centered">
+                    <!-- Form -->
+                    <form [formGroup]="addAssignmentForm" (ngSubmit)="saveAssignment(addModal,title.value)">
+                        <div class="add-form-element">
+                            <label for="title">Title:</label>
+                            <input #title class="add-form-input" type="text" name="title" id="title" formControlName="title">
+                        </div>
+                        <div>
+                            <div class="add-form-element">
+                                <label for="deadline">Deadline:</label>
+                                <input #deadline type="date" name="deadline" id="deadline" class="add-form-input"
+                                 formControlName="deadline" [min]="date_today" (change)="dateSelection()">
+                            </div>
+
+                        </div>
+                        <div class="add-form-element">
+                            <label for="upload">Upload file:</label>
+                            <input #file type="file" name="upload" id="upload" formControlName="upload" (change)="fileSelect($event)">
+                        </div>
+
+                        <div  class="modal-btn-content">
+                            <div>
+                                <button class="btn-save" type="submit" [disabled]="!addAssignmentForm.valid">
+                                    Save
+                                </button>
+                            </div>
+                            <div>
+                                <button class="btn-save-cancel" type="button" (click)="cancelSave(addModal)">
+                                    Cancel
+                                 </button>
+                             </div>      
+                         </div>                  
+                    </form>
+                </div>          
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- edit assignment modal-->
+<div #EditModal class="hidden">
+    <div class="modal-box">
+        <div class="modal-box-content">
+            <div class="modal-body">
+                <!-- Edit modal header -->
+                <div class="edit-modal-header">
+                    <div class="modal-header-title"><label>Edit {{current_assignment_title}}</label></div>
+                    <button type="button" class="btn-delete" (click)="deleteAssignment(EditModal, current_assignment_id)">
+                        Delete
+                    </button>
+                </div>
+                
+                <div>
+                    <!-- Assignments current saved details -->
+                    <div class="assignment-current-details">
+                        <div class="assignment-detail-element">
+                            <div>
+                                <b>Current title: </b>
+                            </div>
+                            <div>
+                                <label class="info-label">
+                                    {{current_assignment_title}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="assignment-detail-element">
+                            <div>
+                                <b>Current deadline: </b>
+                            </div>
+                            <div>
+                                <label class="info-label">
+                                    {{current_assignment_deadline}}
+                                </label>
+                            </div>
+                        </div>
+                        <div class="assignment-detail-element">
+                            <div>
+                                <b>Current file: </b>
+                            </div>
+                            <div>
+                                <label class="info-label">
+                                    {{current_assignment_filename}}
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div #422Error id="edit_422_error" class="error-container hidden">
+                        <span class="error-message">Unsupported file type detected, please choose a valid file</span>
+                    </div>
+                    <div #nameError id="edit_name_error" class="error-container hidden">
+                        <span class="error-message">An assignment with this title already exists for this class.<br/>Please choose another</span>
+                    </div>
+
+                    <!-- Update form -->
+                    <form [formGroup]="editAssignmentForm" (ngSubmit)="completeEdit(EditModal, editTitle.value, editDeadline.value)">
+
+                        <div class="add-form-element">
+                            <label for="editTitle">Title:</label>
+                            <input #editTitle class="add-form-input" [value]="current_assignment_title" type="text" 
+                            name="editTitle" id="editTitle" formControlName="editTitle">
+                        </div>
+                        <div>
+                            <div class="add-form-element">
+                                <label for="editDeadline">Deadline:</label>
+                                <input #editDeadline type="date" name="editDeadlinee" id="editDeadline" 
+                                class="add-form-input" [value]="current_assignment_deadline"
+                                formControlName="editDeadline" [min]="date_today" (change)="dateSelection()">
+                            </div>
+
+                        </div>
+                        <div class="add-form-element">
+                            <label for="editUpload">Upload file:</label>
+                            <input #editUpload type="file" name="editUpload" id="editUpload" 
+                            formControlName="editUpload" (change)="fileSelect($event)">
+                        </div>
+
+                        <div class="modal-btn-content">
+                            <div>
+                                <button class="btn-save" type="submit" [disabled]="!editAssignmentForm.valid">
+                                    Update
+                                 </button>
+                             </div>
+                            <div>
+                                <button class="btn-save-cancel" type="button" (click)="cancelEdit(EditModal)" >
+                                    Cancel
+                                 </button>
+                             </div>      
+                         </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

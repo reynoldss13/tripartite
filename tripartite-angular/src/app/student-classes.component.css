@@ -1,0 +1,44 @@
+.classes-header {
+    display: flex;
+    flex-direction: row;
+    width:80%;
+    border: 1px solid #949494;
+    padding:20px;
+    margin: 20px;
+    justify-content: center;
+    background-color: #eeeeee;
+}
+
+.classes-body {
+    display: flex;
+    flex-direction: column;
+    width:80%;
+    border: 1px solid #949494;
+    padding:20px;
+    margin: 20px;
+    justify-content: center;
+}
+
+.class-instance {
+    display: flex;
+    flex-direction: row;
+    font-size: large;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width:95%;
+}
+
+.data-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:17%
+}
+
+.teacher-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width:30%
+}
+
